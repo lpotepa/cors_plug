@@ -42,6 +42,7 @@ defmodule CORSPlug do
     |> prepare_cfg(Application.get_all_env(:cors_plug))
     |> Keyword.update!(:expose, &Enum.join(&1, ","))
     |> Keyword.update!(:methods, &Enum.join(&1, ","))
+    |> Keyword.update!(:expose, &Enum.join(&1, ","))
   end
 
   defp prepare_cfg(options, nil), do: Keyword.merge(defaults(), options)
