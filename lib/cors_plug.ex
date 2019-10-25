@@ -18,7 +18,8 @@ defmodule CORSPlug do
         "Keep-Alive",
         "X-Requested-With",
         "If-Modified-Since",
-        "X-CSRF-Token"
+        "X-CSRF-Token",
+        "Virtual-Access-Token"
       ],
       expose: [],
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
@@ -42,7 +43,6 @@ defmodule CORSPlug do
     |> prepare_cfg(Application.get_all_env(:cors_plug))
     |> Keyword.update!(:expose, &Enum.join(&1, ","))
     |> Keyword.update!(:methods, &Enum.join(&1, ","))
-    |> Keyword.update!(:headers, &Enum.join(&1, ","))
   end
 
   defp prepare_cfg(options, nil), do: Keyword.merge(defaults(), options)
